@@ -1,0 +1,24 @@
+.imageClass{
+    width:200px;
+    height:300px;
+}
+
+/*.bg { 
+    /* The image used 
+    /*background-image: url("C:\Cinema\src\assets\images\MIB3.jpg");*/
+
+    /* Full height */
+    /*height: 100%;*/ 
+
+    /* Center and scale the image nicely */
+    /*background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}*/
+.colorClass1{
+background-color: cornflowerblue;
+}
+.colorClass2{
+    background-color: rgba(34, 202, 34, 0.637);
+}
+

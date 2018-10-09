@@ -1,0 +1,213 @@
+
+<div class="panel panel-primary" *ngFor="let movie of movies">
+    <div class="panel-heading" id="grad1">
+      <h3 class="panel-title">{{movie.Title}}</h3>
+    </div>
+    
+    <div class="panel-body bg-primary">
+      <div class="col-10">
+        <div class="row">
+          <div class="col-xs-3">
+            <img class="imageClass" [src]="movie.Poster"/>
+          </div>
+          <div class="col-xs-8">
+  
+          <div class="row">
+              <div class="col-xs-6">
+                  <h3>Year</h3>
+              </div>
+              <div class="col-xs-6">
+                  <h3>{{movie.Year}}</h3>
+              </div>
+            </div>
+  
+            <div class="row">
+                <div class="col-xs-6">
+                    <h3>Runtime</h3>
+                </div>
+                <div class="col-xs-6">
+                    <h3>{{movie.Runtime}}</h3>
+                </div>
+              </div>
+  
+              <div class="row">
+                  <div class="col-xs-6">
+                    <h3>Genre</h3>
+                  </div>
+                  <div class="col-xs-6">
+                    <h3>{{movie.Genre}}</h3>
+                  </div>
+                </div>
+  
+                <div class="row">
+                    <div class="col-xs-6">
+                      <h3>Director</h3>
+                    </div>
+                    <div class="col-xs-6">
+                      <h3>{{movie.Director}}</h3>
+                    </div>
+                  </div>
+          </div>
+  
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer" id="grad2">
+          <div class="btn-group btn-group-lg">
+              <button class="btn btn-success" (click)="current_movie = myclone(movie)" data-toggle="modal" data-target="#myModal3">
+                  <span class="glyphicon glyphicon-pencil"></span> Add Movie 
+              </button>
+              <button class="btn btn-warning" (click)="current_movie = myclone(movie)" data-toggle="modal" data-target="#myModal1">
+              <span class="glyphicon glyphicon-pencil"></span> Edit Movie 
+            </button>
+            <button class="btn btn-danger" (click)="current_movie = myclone(movie)" data-toggle="modal" data-target="#myModal2">
+                <span class="glyphicon glyphicon-remove"></span> Delete Movie
+              </button>
+          </div>
+        </div>
+ 
+<form #EditForm="ngForm">
+  <div class="modal fade" id="myModal1" role="dialog">
+      <div class="modal-dialog">
+      
+        <div class="modal-content">
+          <div class="modal-header p-3 mb-2 bg-primary text-white">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edit movie: {{current_movie.Title}}</h4>
+          </div>
+  
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="Year">Year</label>
+              <input type="text" class="form-control" id="Year" 
+                required minlength="4"
+                  [(ngModel)]="current_movie.Year" name="Year"
+                  #Year="ngModel">
+                  <div
+                  [hidden]="Year.valid || Year.pristine"
+                  class="alert alert-danger">
+                  Year is required
+                  </div>
+                  <div *ngIf="Year.errors?.minlength"
+                    class="alert alert-danger">
+                    Year must be at least 4 digits long.
+                  </div>
+            </div>
+            <div class="form-group">
+              <label for="Runtime">Runtime</label>
+              <input type="text" class="form-control" id="Runtime" 
+                required
+                  [(ngModel)]="current_movie.Runtime" name="Runtime"
+                  #Runtime="ngModel">
+                  <div
+                  [hidden]="Runtime.valid || Runtime.pristine"
+                  class="alert alert-danger">
+                  Runtime is required
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="Genre">Genre</label>
+              <input type="text" class="form-control" id="Genre" 
+                required
+                  [(ngModel)]="current_movie.Genre" name="Genre"
+                  #Genre="ngModel">
+                  <div
+                  [hidden]="Genre.valid || Genre.pristine"
+                  class="alert alert-danger">
+                  Genre is required
+                 </div>
+            </div>
+            <div class="form-group">
+              <label for="Director">Director</label>
+              <input type="text" class="form-control" id="Director" 
+                required
+                  [(ngModel)]="current_movie.Director" name="Director"
+                  #Director="ngModel">
+                  <div
+                  [hidden]="Director.valid || Director.pristine"
+                  class="alert alert-danger">
+                  Director is required
+                 </div>
+            </div>
+        </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="saveEmployee(EditForm)">
+                <span class="glyphicon glyphicon-ok"></span> Save Changes 
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <form #AddForm="ngForm">
+      <div class="modal fade" id="myModal3" role="dialog">
+          <div class="modal-dialog">
+          
+            <div class="modal-content">
+              <div class="modal-header p-3 mb-2 bg-primary text-white">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add new Movie</h4>
+              </div>
+      
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="Year">Title</label>
+                  <input type="text" class="form-control" id="Title" 
+                    required 
+                    minlength="4"
+                      [(ngModel)]="a" name="Title"
+                      #Title="ngModel">
+                      <div
+                      [hidden]="Title.valid || Title.pristine"
+                      class="alert alert-danger">
+                      Title is required
+                      </div>
+                </div>
+                <div class="form-group">
+                  <label for="Year">Year</label>
+                  <input type="text" class="form-control" id="Year" 
+                    required 
+                    minlength="4"
+                      [(ngModel)]="b" name="Year"
+                      #Title="ngModel">
+                      <div
+                      [hidden]="Year.valid || Year.pristine"
+                      class="alert alert-danger">
+                      Year is required
+                      </div>
+                      <div *ngIf="Year.errors?.minlength"
+                        class="alert alert-danger">
+                        Year must be at least 4 digits long
+                      </div>
+                </div>
+            </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="AddNewMovie(AddForm)">
+                    <span class="glyphicon glyphicon-ok"></span> Save Changes 
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+  
+  <form #DeleteForm="ngForm">
+  <div class="modal fade" id="myModal2" role="dialog">
+      <div class="modal-dialog">
+      
+        <div class="modal-content">
+          <div class="modal-footer" id="grad3">
+              <h4 class="modal-title">Delete Movie : {{current_movie.Title}} ?</h4>
+            <button type="submit" value="OK" data-dismiss="modal" (click)="deleteMovie(DeleteForm)" class="btn btn-danger">
+                <span class="glyphicon glyphicon-remove"></span> OK 
+              </button>
+              <button type="submit" value="Cancel" class="btn btn-success pull-down" data-dismiss="modal">
+                  <span class="glyphicon glyphicon-remove"></span> Cancel
+                </button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </form>
