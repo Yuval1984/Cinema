@@ -63,7 +63,7 @@ export class ListMoviesComponent implements OnInit {
       ]
       for(let i=0;i<moviearr.length;i++)
       {
-      this.http.get<any>('https://www.omdbapi.com/?t=' + moviearr[i] +"&apikey=4c039a0f"
+      this.http.get<any>('http:/www.omdbapi.com/?t=' + moviearr[i] +"&apikey=4c039a0f"
       ).subscribe(  result  => {
         this.movies.push(result);
       })
@@ -71,7 +71,7 @@ export class ListMoviesComponent implements OnInit {
     }
 
     GetMovieData2(T,Y){
-      this.http.get<any>('http://www.omdbapi.com/?t='+T+"&y="+Y+"&apikey=4c039a0f"
+      this.http.get<any>('http:/www.omdbapi.com/?t='+T+"&y="+Y+"&apikey=4c039a0f"
       ).subscribe(  result  => {
         this.movies.push(result);
       })
