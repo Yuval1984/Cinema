@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef} from '@angular/core';
 import { movie } from '../models/movie.model';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgControl } from '@angular/forms';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
-
 import * as jQuery from 'jquery';
+import { Container } from '@angular/compiler/src/i18n/i18n_ast';
+import { open } from 'fs';
+//import { BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-list-movies',
   templateUrl: './list-movies.component.html',
-  styleUrls: ['./list-movies.component.css']
-})
+  styleUrls: ['./list-movies.component.css'],
+  })
 export class ListMoviesComponent implements OnInit {
   movies: movie[] = [];
   id: 0;
@@ -23,6 +25,7 @@ export class ListMoviesComponent implements OnInit {
     Director: '',
     Poster: ''
   };
+  
 
   constructor(private http: HttpClient) 
   {
@@ -69,25 +72,27 @@ export class ListMoviesComponent implements OnInit {
       })
     }
     }
-
+    
     GetMovieData2(T,Y){
       this.http.get<any>('https://www.omdbapi.com/?t='+T+"&y="+Y+"&apikey=4c039a0f"
       ).subscribe(  result  => {
-        this.movies.push(result);
+        let Flag=0;
+        if(result.Response!="False")
+        {
+          for(let i=0;i<this.movies.length;i++)
+          {
+            if( this.movies[i].Title == result.Title )
+            {
+              Flag=1;
+            }
+          }
+          if(Flag==0)
+            this.movies.push(result);
+        }
       })
 
     }
-    AddNewMovie(movieForm: NgForm): void {
-      let Flag=0;
-      for(let i=0;i<this.movies.length;i++)
-      {
-        if( this.movies[i].Title == movieForm.value.Title )
-        {
-          console.log(this.movies[i].Title,movieForm.value.Title)
-          Flag=1;
-        }   
-      }
-      if(Flag==0)
+    AddNewMovie(movieForm: NgForm) {
         this.GetMovieData2(movieForm.value.Title,movieForm.value.Year);
     }
 }
