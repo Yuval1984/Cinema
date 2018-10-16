@@ -76,43 +76,12 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">Edit movie: {{current_movie.Title}}</h4>
           </div>
-  
-          
-              <!--<div class="form-group">
-                  <label for="Year">Year</label>
-                  <input type="text" class="form-control" id="Year" 
-                    required
-                      [(ngModel)]="current_movie.Year" name="Year"
-                      #Year="ngModel">
-                      <div
-                      [hidden]="Year.valid || Year.pristine"
-                      class="alert alert-danger">
-                      Year is required
-                    </div>
-                </div>-->
-            <!--<div class="form-group">
-              <label for="Year">Year</label>
-              <input type="text" class="form-control" id="Year" 
-                required 
-                minlength="4"
-                  [(ngModel)]="current_movie.Year" name="Year"
-                  #Year="ngModel">
-                  <div
-                  [hidden]="Year.valid || Year.pristine"
-                  class="alert alert-danger">
-                  Year is required
-                  </div>
-                  <div *ngIf="Year.errors?.minlength"
-                    class="alert alert-danger">
-                    Year must be at least 4 digits long
-                  </div>
-            </div>-->
           <div class="modal-body">
             <div class="form-group">
                 <label for="Y">Year</label>
                 <input type="text" class="form-control" id="Y" 
                   required
-                  minlength="4" maxlength="4" pattern="^$|^([0-9]|[1][9][6-9][0-9]|[2][0][0-1][0-8])?"
+                  minlength="4" maxlength="4" pattern="^$|^([0-9]|[1][0-9][0-9][0-9]|[2][0][0-1][0-8])?"
                     [(ngModel)]="current_movie.Year" name="Y"
                     #Y="ngModel">
                     <div
@@ -163,7 +132,7 @@
             </div>
         </div>
           <div class="modal-footer">
-            <button type="submit" [disabled]="!EditForm.valid" class="btn btn-primary" data-dismiss="modal" (click)="saveEmployee(EditForm)">
+            <button type="submit"  class="btn btn-primary" data-dismiss="modal" (click)="saveEmployee(EditForm)">
                 <span class="glyphicon glyphicon-ok"></span> Save Changes 
             </button>
           </div>
@@ -171,17 +140,15 @@
       </div>
     </div>
   </form>
-
+<!--[disabled]="!EditForm.valid"-->
   <form #AddForm="ngForm">
       <div class="modal fade" id="myModal3" role="dialog">
           <div class="modal-dialog">
-          
             <div class="modal-content">
               <div class="modal-header p-3 mb-2 bg-primary text-white">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Add new Movie</h4>
               </div>
-      
               <div class="modal-body">
                 <div class="form-group">
                   <label for="Title">Title</label>
@@ -200,7 +167,7 @@
                   <label for="Year">Year</label>
                   <input type="text" class="form-control" id="Year"
                     required 
-                    minlength="4" maxlength="4" pattern="^$|^([0-9]|[1][9][6-9][0-9]|[2][0][0-1][0-8])?"
+                    minlength="4" maxlength="4" pattern="^$|^([0-9]|[1][0-9][0-9][0-9]|[2][0][0-1][0-8])?"
                       [(ngModel)]="r" name="Year"
                       #Year="ngModel">
                       <div
@@ -215,7 +182,7 @@
                 </div>
             </div>
               <div class="modal-footer">
-                <button type="submit" [disabled]="!AddForm.valid" class="btn btn-primary" data-dismiss="modal" (click)="AddNewMovie(AddForm)">
+                <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="AddNewMovie(AddForm)">
                     <span class="glyphicon glyphicon-ok"></span> Save Changes 
                 </button>
               </div>
@@ -227,10 +194,10 @@
   <form #DeleteForm="ngForm">
   <div class="modal fade" id="myModal2" role="dialog">
       <div class="modal-dialog">
-      
         <div class="modal-content">
           <div class="modal-footer" id="grad3">
               <h4 class="modal-title">Delete Movie : {{current_movie.Title}} ?</h4>
+            <br><br>
             <button type="submit" value="OK" data-dismiss="modal" (click)="deleteMovie(DeleteForm)" class="btn btn-danger">
                 <span class="glyphicon glyphicon-remove"></span> OK 
               </button>
@@ -243,15 +210,5 @@
       </div>
     </div>
   </form>
-  <ng-template #template>
-      <div class="modal-header">
-        <h4 class="modal-title pull-left">First modal</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        This is a first modal
-        <!--<button type="button" class="btn btn-primary" (click)="openModal2(templateNested)">Open second modal</button>-->
-      </div>
-    </ng-template>
+  
+<app-alert></app-alert>

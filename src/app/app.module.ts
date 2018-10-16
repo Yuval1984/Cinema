@@ -5,11 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ListMoviesComponent } from './movies/list-movies.component';
+import { AlertComponent } from './movies/alert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListMoviesComponent
+    ListMoviesComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
